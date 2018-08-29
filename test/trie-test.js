@@ -1,6 +1,8 @@
 import { expect } from 'chai';
 import Trie from '../lib/Trie.js';
 import Node from '../lib/Node.js';
+const text = '/usr/share/dict/words';
+const dictionary = fs.readFileSync(text).toString().trim().split('\n');
 
 describe('Trie', () => {
   let trie;
