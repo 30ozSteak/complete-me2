@@ -21,7 +21,7 @@ describe('Trie', () => {
     expect(trie.count).to.equal(0);
   });
 
-  it ('should start with no child nodes', () => {
+  it ('should start with an empty object as its child', () => {
     expect(trie.root.children).to.deep.equal({});
   });
 
