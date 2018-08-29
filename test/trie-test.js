@@ -17,4 +17,8 @@ describe('Trie', () => {
     expect(trie.root).to.exist;
   });
 
+  it ('should load with zero words', () => {
+    expect(trie.count).to.equal(0);
+  });
+
 });
