@@ -46,11 +46,22 @@ describe('Trie', () => {
     it ('should not create duplicate nodes when a word is already in the trie', () => {
       let data1 = 'parker';
       let data2 = 'parker';
-      
+
       trie.insert(data1);
       trie.insert(data2);
       // console.log(JSON.stringify(trie, null, 4));
       expect(trie.count).to.equal(1);
+    });
+
+    it ('should return an empty array if no words match the typed prefix', () => {
+      let data1 = 'call';
+      let data2 = 'callme';
+      let data3 = 'callmemaybe';
+
+      trie.insert(data1);
+      trie.insert(data2);
+      trie.insert(data3);
+      expect(trie.suggest('cx')).to.deep.equal([]);
     });
   });
 
