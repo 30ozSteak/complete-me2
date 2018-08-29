@@ -17,8 +17,12 @@ describe('Trie', () => {
     expect(trie.root).to.exist;
   });
 
-  it ('should load with zero words', () => {
+  it ('should start the trie with no words', () => {
     expect(trie.count).to.equal(0);
+  });
+
+  it ('should start with no child nodes', () => {
+    expect(trie.root.children).to.deep.equal({});
   });
 
 });
