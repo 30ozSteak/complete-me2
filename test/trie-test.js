@@ -42,6 +42,16 @@ describe('Trie', () => {
       trie.populate(dictionary);
       expect(trie.count).to.deep.equal(235886);
     });
+
+    it ('should not create duplicate nodes when a word is already in the trie', () => {
+      let data1 = 'parker';
+      let data2 = 'parker';
+      
+      trie.insert(data1);
+      trie.insert(data2);
+      // console.log(JSON.stringify(trie, null, 4));
+      expect(trie.count).to.equal(1);
+    });
   });
 
 });
