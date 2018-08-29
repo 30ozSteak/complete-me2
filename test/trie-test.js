@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import Trie from '../lib/Trie.js';
+import Node from '../lib/Node.js';
 
 describe('Trie', () => {
   let trie;
@@ -23,6 +24,17 @@ describe('Trie', () => {
 
   it ('should start with an empty object as its child', () => {
     expect(trie.root.children).to.deep.equal({});
+  });
+
+
+  describe('Insert', () => {
+    it('should insert a new node into the trie', () => {
+      let data = 'warby';
+  
+      trie.insert(data);
+  
+      expect(Object.keys(trie.root.children)[0]).to.equal('w');
+    });
   });
 
 });
