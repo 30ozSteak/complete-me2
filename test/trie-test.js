@@ -127,9 +127,14 @@ describe('Trie', () => {
   });
 
   describe('populate', () => {
-    it ('should put words into the trie from the dictionary', () => {
+
+    it ('should exist', () => {
+      expect(trie).respondsTo('populate');
+    })
+
+    it ('should increase the count when invoking populate', () =>{
       trie.populate(dictionary);
-      expect(trie.count).to.deep.equal(235886);
+      expect(trie.count).to.equal(235886);
     });
   });
 });
