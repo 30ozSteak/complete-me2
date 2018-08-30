@@ -130,7 +130,7 @@ describe('Trie', () => {
 
     it ('should exist', () => {
       expect(trie).respondsTo('populate');
-    })
+    });
 
     it ('should increase the count when invoking populate', () =>{
       trie.populate(dictionary);
