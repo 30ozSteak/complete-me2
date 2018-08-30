@@ -74,9 +74,15 @@ describe('Trie', () => {
       expect(uniqueLetters.length).to.equal(1);
     });
 
-    it ('should increment the word count if a new word is put into the trie', () => {
+    it ('should increase the word count by one if a new word is put into the trie', () => {
       trie.insert('hipster');
-      expect(trie.wordCount).to.equal(1);
+      expect(trie.count).to.equal(1);
+    });
+
+    it ('should not increase word by one count if the word is already in the trie', () => {
+      trie.insert('hipster trash');
+      trie.insert('hipster trash');
+      expect(trie.count).to.equal(1);
     });
     
   });
