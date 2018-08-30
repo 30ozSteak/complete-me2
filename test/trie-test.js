@@ -30,6 +30,11 @@ describe('Trie', () => {
   });
 
   describe('Insert', () => {
+
+    it ('should have an insert method', () => {
+      expect(trie).respondsTo('insert');
+    });
+
     it ('should insert a new node into the trie', () => {
       let data = 'warby';
   
@@ -52,12 +57,19 @@ describe('Trie', () => {
       // console.log(JSON.stringify(trie, null, 4));
       expect(trie.count).to.equal(1);
     });
+  });
+
+  describe('Suggest', () => {
+
+    it ('should have a suggest method' , () => {
+      expect(trie).respondsTo('suggest');
+    });
 
     it ('should return an empty array if no words match the typed prefix', () => {
       let data1 = 'call';
-      let data2 = 'callme';
-      let data3 = 'callmemaybe';
-      let data4 = 'callmemaybeisstillrelevantright';
+      let data2 = 'call me';
+      let data3 = 'call me maybe';
+      let data4 = 'call me maybe is still relevant right';
 
       trie.insert(data1);
       trie.insert(data2);
@@ -89,6 +101,8 @@ describe('Trie', () => {
 
       expect(trie.suggest('warby parker')).to.not.equal(['warby parker glasses suck']);
     });
+
+
   });
 
 });
