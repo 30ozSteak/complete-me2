@@ -57,11 +57,35 @@ describe('Trie', () => {
       let data1 = 'call';
       let data2 = 'callme';
       let data3 = 'callmemaybe';
+      let data4 = 'callmemaybeisstillrelevantright';
 
       trie.insert(data1);
       trie.insert(data2);
       trie.insert(data3);
+      trie.insert(data4);
       expect(trie.suggest('cx')).to.deep.equal([]);
+    });
+
+    it ('should return a full array full of words that match the typed prefix', () => {
+      let data1 = 'warby';
+      let data2 = 'warby parker';
+      let data3 = 'warby parker glasses are great';
+
+      trie.insert(data1);
+      trie.insert(data2);
+      trie.insert(data3);
+      // console.log(JSON.stringify(trie, null, 4));
+      expect(trie.suggest('w')).to.deep.equal(['warby', 'warby parker', 'warby parker glasses are great']);
+      expect(trie.suggest('warby parker')).to.deep.equal(['warby parker', 'warby parker glasses are great']);
+    });
+
+    it ('should not return words that do not match the typed prefix', () => {
+      let data1 = 'warby';
+      let data2 = 'warby parker glasses are great';
+      
+      trie.insert(data1);
+      trie.insert(data2);
+      expect(trie.suggest('warby parker')).to.not.equal(['warby parker glasses suck']);
     });
   });
 
