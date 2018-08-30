@@ -73,6 +73,11 @@ describe('Trie', () => {
       expect('a' in trie.root.children['s'].children).to.equal(true);
       expect(uniqueLetters.length).to.equal(1);
     });
+
+    it ('should increment the word count if a new word is put into the trie', () => {
+      trie.insert('hipster');
+      expect(trie.wordCount).to.equal(1);
+    });
     
   });
 
