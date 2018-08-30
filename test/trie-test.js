@@ -84,7 +84,7 @@ describe('Trie', () => {
 
   describe('suggest', () => {
 
-    it ('should have a suggest method' , () => {
+    it ('should have a suggest method', () => {
       expect(trie).respondsTo('suggest');
     });
 
@@ -132,9 +132,48 @@ describe('Trie', () => {
       expect(trie).respondsTo('populate');
     });
 
-    it ('should increase the count when invoking populate', () =>{
+    it ('should increase the overall count by a LOT when invoking populate', () =>{
       trie.populate(dictionary);
       expect(trie.count).to.equal(235886);
+    });
+  });
+
+  describe('delete', () => {
+
+    it ('should exist', () => {
+      expect(trie).respondsTo('delete');
+    });
+
+    it ('should decrease the count when invoking delete', () =>{
+      let data1 = 'raybans';
+      let data2 = 'raybans are better than warby parker';
+
+      trie.insert(data1);
+      trie.insert(data2);
+      trie.delete(data2);
+      expect(trie.count).to.equal(1);
+    });
+
+    it ('should only suggest available words', () => {
+      let data1 = 'bananas';
+      let data2 = 'bananaphone';
+
+      trie.insert(data1);
+      trie.insert(data2);
+      expect(trie.count).to.equal(2);
+      trie.delete(data2);
+      expect(trie.suggest('bananas')).to.deep.equal(['bananas']);
+    });
+
+    it ('should not suggest deleted words', () => {
+      let data1 = 'dog party';
+      let data2 = 'dogs dont get parties';
+
+      trie.insert(data1);
+      trie.insert(data2);
+      expect(trie.count).to.equal(2);
+      trie.delete(data2);
+      expect(trie.suggest('dogs')).to.not.equal(['dogs dont get parties']);
     });
   });
 });
