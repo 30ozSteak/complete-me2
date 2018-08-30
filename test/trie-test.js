@@ -82,9 +82,11 @@ describe('Trie', () => {
     it ('should not return words that do not match the typed prefix', () => {
       let data1 = 'warby';
       let data2 = 'warby parker glasses are great';
-      
+
       trie.insert(data1);
       trie.insert(data2);
+      // console.log(JSON.stringify(trie, null, 4));
+
       expect(trie.suggest('warby parker')).to.not.equal(['warby parker glasses suck']);
     });
   });
