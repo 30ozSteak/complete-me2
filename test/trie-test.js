@@ -43,11 +43,6 @@ describe('Trie', () => {
       expect(Object.keys(trie.root.children)[0]).to.equal('w');
     });
 
-    it ('should get words from the built-in dictionary and put them into the trie', () => {
-      trie.populate(dictionary);
-      expect(trie.count).to.deep.equal(235886);
-    });
-
     it ('should not create duplicate nodes when a word is already in the trie', () => {
       let data1 = 'parker';
       let data2 = 'parker';
@@ -87,7 +82,7 @@ describe('Trie', () => {
     
   });
 
-  describe('Suggest', () => {
+  describe('suggest', () => {
 
     it ('should have a suggest method' , () => {
       expect(trie).respondsTo('suggest');
@@ -129,8 +124,12 @@ describe('Trie', () => {
 
       expect(trie.suggest('warby parker')).to.not.equal(['warby parker glasses suck']);
     });
-
-
   });
 
+  describe('populate', () => {
+    it ('should put words into the trie from the dictionary', () => {
+      trie.populate(dictionary);
+      expect(trie.count).to.deep.equal(235886);
+    });
+  });
 });
