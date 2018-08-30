@@ -57,6 +57,22 @@ describe('Trie', () => {
       // console.log(JSON.stringify(trie, null, 4));
       expect(trie.count).to.equal(1);
     });
+
+    it ('should not insert a child if that letter already exists in the trie', () => {
+      let data1 = 'salt';
+      let data2 = 'salty'; 
+
+      trie.insert(data1);
+      trie.insert(data2);
+
+      let uniqueLetters = Object.keys(trie.root.children).filter(key => {
+        return key === 's';
+      });
+
+      expect('s' in trie.root.children).to.equal(true);
+      expect('a' in trie.root.children['s'].children).to.equal(true);
+      expect(uniqueLetters.length).to.equal(1);
+    });
     
   });
 
