@@ -57,6 +57,7 @@ describe('Trie', () => {
       // console.log(JSON.stringify(trie, null, 4));
       expect(trie.count).to.equal(1);
     });
+    
   });
 
   describe('Suggest', () => {
